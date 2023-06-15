@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
 
-const TodoPage = () => {
+const DetailPage = () => {
 	const params = useParams()
 	console.log(params)
 
@@ -108,7 +108,7 @@ const TodoPage = () => {
 		</>
 	)
 }
-export default TodoPage
+export default DetailPage
 
 const Wrapper = styled.div`
 	height: calc(100vh - 60px);

@@ -13,8 +13,8 @@ const router = createBrowserRouter([
 				element: <MainPage />,
 			},
 			{
-				path: '/todo/:todoId',
-				element: <TodoPage />,
+				path: '/:postId',
+				element: <DetailPage />,
 			},
 		],
 	},

@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import BasicButton from "../../components/Button/Button";
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../styles/common";
-import TodoAddModal from "./componetns/Modal/add-modal";
-import TodoList from "./componetns/List/todo-list";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
 
 const DetailPage = () => {
   const params = useParams();

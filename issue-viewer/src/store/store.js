@@ -1,8 +1,7 @@
-import { rootReducer } from "reducer";
+import { rootReducer } from "../reducer/index";
 import { applyMiddleware, createStore } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
-
 
 // .env(환경변수)
 // 환경변수는 언제 사용해야할까?
@@ -11,6 +10,7 @@ import logger from "redux-logger";
 // dotenv, 기본값
 
 export const store = createStore(
-    rootReducer, 
-    process.env.NODE_ENV === 'development' && composeWithDevTools(applyMiddleware(logger))
-)
+  rootReducer,
+  process.env.NODE_ENV === "development" &&
+    composeWithDevTools(applyMiddleware(logger))
+);

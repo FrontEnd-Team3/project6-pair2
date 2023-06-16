@@ -16,6 +16,7 @@ const MainPage = () => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("created");
   const pageCount = parseInt(200 / limit);
+
   const api = useSelector((state) => state.api.apis);
   const dispatch = useDispatch();
 
@@ -37,6 +38,17 @@ const MainPage = () => {
             <option value="20">20</option>
             <option value="50">50</option>
             <option value="100">100</option>
+          </select>
+        </label>
+        <label>
+          filter:
+          <select
+            value={sort}
+            onChange={({ target: { value } }) => setSort(value)}
+          >
+            <option value="created">created</option>
+            <option value="updated">updated</option>
+            <option value="comments">comments</option>
           </select>
         </label>
       </div>

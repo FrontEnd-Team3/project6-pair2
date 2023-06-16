@@ -14,6 +14,7 @@ const MainPage = () => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const pageCount = parseInt(200 / limit);
+  const [sort, setSort] = useState("created");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,16 +27,17 @@ const MainPage = () => {
             repo: "angular-cli",
             per_page: limit,
             page: i + 1,
-            sort: "created",
+            sort: sort,
           }
         );
         return response.data;
       });
       const data = await Promise.all(requests);
       setApi(data);
+      setSort(sort);
     };
     fetchData();
-  }, [limit]);
+  }, [limit, sort]);
 
   // return (
   //   <div>
@@ -67,6 +69,17 @@ const MainPage = () => {
             <option value="20">20</option>
             <option value="50">50</option>
             <option value="100">100</option>
+          </select>
+        </label>
+        <label>
+          filter:
+          <select
+            value={sort}
+            onChange={({ target: { value } }) => setSort(value)}
+          >
+            <option value="created">created</option>
+            <option value="updated">updated</option>
+            <option value="comments">comments</option>
           </select>
         </label>
       </div>

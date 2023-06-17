@@ -5,7 +5,7 @@ import Pagination from "./componetns/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { setApi } from "../../reducer/detail";
 import styled from "styled-components";
-
+import "./index.css";
 const MainPage = () => {
   const octokit = new Octokit({
     // auth: "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",
@@ -28,7 +28,7 @@ const MainPage = () => {
 
   return (
     <High_Container>
-      <div>
+      <Word className="word">
         <Wrapper_page>
           Select the number of pages
           <select
@@ -52,12 +52,12 @@ const MainPage = () => {
             <option value="comments">comments</option>
           </select>
         </Wrapper_filter>
-      </div>
+      </Word>
       <Container>
         {api.length &&
           api[page - 1] &&
           api[page - 1].map((v) => (
-            <Wrapper_post onClick={() => navigate(`/${v.id}`)}>
+            <Wrapper_post onClick={() => navigate(`/${v.id}`)} className="body">
               <div>{v.title}</div>
               <div>
                 <div>#{v.id}</div>
@@ -76,6 +76,7 @@ const MainPage = () => {
   );
 };
 export default MainPage;
+
 const High_Container = styled.div``;
 const Container = styled.div`
   position: relative;
@@ -88,7 +89,7 @@ const Wrapper_post = styled.div`
   box-shadow: 1px 3px 1px darkgray;
   text-align: center;
   line-height: 2;
-  width: 1000px;
+  width: 60%;
   margin-top: 30px;
   border-radius: 30px;
   font-weight: 600;
@@ -116,11 +117,18 @@ const Wrapper_post = styled.div`
     font-weight: 600;
   }
 `;
-const Wrapper_page = styled.label`
-  padding: 10px 10px;
+
+const Word = styled.div`
   position: relative;
   top: 30px;
-  left: 350px;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Wrapper_page = styled.label`
+  padding: 10px 10px;
+  margin: 0 auto;
   font-size: 18px;
   color: gray;
   font-weight: 500;
@@ -138,9 +146,6 @@ const Wrapper_page = styled.label`
 
 const Wrapper_filter = styled.label`
   padding: 10px 10px;
-  position: relative;
-  top: 30px;
-  left: 350px;
   font-size: 18px;
   color: gray;
   font-weight: 500;

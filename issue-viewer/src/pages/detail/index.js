@@ -3,18 +3,19 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../styles/common";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const DetailPage = () => {
   const params = useParams();
   console.log(params.postId);
   const api = useSelector((state) => state.api.apis);
   const dispatch = useDispatch();
-  /**            <div>id : {v.id}</div>
-            <div>title : {v.title}</div>
-            <div>user : {v.user.login}</div>
-            <div>comments : {v.comments}</div>
-            <div>create_date : {v.created_at}</div>
-            <div>update_date : {v.updated_at}</div> */
+  // <div>id : {v.id}</div>
+  //           <div>title : {v.title}</div>
+  //           <div>user : {v.user.login}</div>
+  //           <div>comments : {v.comments}</div>
+  //           <div>create_date : {v.created_at}</div>
+  //           <div>update_date : {v.updated_at}</div>
   const { title, author, createTime, editTime, content, comments } = {
     title: "Mock",
     author: "Mock",

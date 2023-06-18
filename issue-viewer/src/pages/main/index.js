@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Pagination from "./componetns/pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setApi } from "../../reducer/detail";
+import { resetCurrPost, setApi } from "../../reducer/detail";
 import styled from "styled-components";
 import "./index.css";
 const MainPage = () => {
@@ -24,6 +24,7 @@ const MainPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(setApi({ limit, sort }));
+    dispatch(resetCurrPost());
   }, [limit, sort]);
 
   return (

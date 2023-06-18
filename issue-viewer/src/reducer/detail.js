@@ -47,13 +47,30 @@ export const apiSlice = createSlice({
     });
     builder.addCase(setCurrPost.fulfilled, (state, action) => {
       const flattened = state.apis.flat();
-      const ans = state.apis.find((api) => api.id === desiredId);
+      const ans = flattened.find((api) => api.id === action.payload);
       state.currPost = ans || null;
       state.setCurrPostState.loading = false;
       state.setCurrPostState.done = true;
       state.setCurrPostState.err = null;
     });
     builder.addCase(setCurrPost.rejected, (state, action) => {
+      state.setCurrPostState.loading = false;
+      state.setCurrPostState.done = true;
+      state.setCurrPostState.err = action.payload;
+    });
+    // resetCurrPosts
+    builder.addCase(resetCurrPost.pending, (state) => {
+      state.setCurrPostState.loading = true;
+      state.setCurrPostState.done = false;
+      state.setCurrPostState.err = null;
+    });
+    builder.addCase(resetCurrPost.fulfilled, (state, action) => {
+      state.currPost = null;
+      state.setCurrPostState.loading = false;
+      state.setCurrPostState.done = true;
+      state.setCurrPostState.err = null;
+    });
+    builder.addCase(resetCurrPost.rejected, (state, action) => {
       state.setCurrPostState.loading = false;
       state.setCurrPostState.done = true;
       state.setCurrPostState.err = action.payload;
@@ -81,7 +98,6 @@ export const setApi = createAsyncThunk(
         return response.data;
       });
       const data = await Promise.all(requests);
-      console.log("asdf", data);
       return data;
     } catch (err) {
       console.log(err);
@@ -90,9 +106,11 @@ export const setApi = createAsyncThunk(
   }
 );
 
-export const setCurrPost = createAsyncThunk(
-  "api/setCurrPost",
-  async ({ id }) => {
-    return id;
-  }
+export const setCurrPost = createAsyncThunk("api/setCurrPost", async (id) => {
+  return id;
+});
+
+export const resetCurrPost = createAsyncThunk(
+  "api/resetCurrPost",
+  async () => {}
 );

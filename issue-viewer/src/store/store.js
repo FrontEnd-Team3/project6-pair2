@@ -1,3 +1,4 @@
+// import { composeWithDevTools } from "@reduxjs/toolkit/dist/devtoolsExtension";
 import { rootReducer } from "../reducer/index";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";

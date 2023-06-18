@@ -28,7 +28,8 @@
     "styled-components": "^5.3.10",
     "styled-reset": "^4.4.6",
     "typeface-roboto-mono": "^1.1.13",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "homepage": "https://frontend-team3.github.io/project6-pair2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,7 +38,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint --cache \"src/**/*.{js,jsx}\"",
     "lint:fix": "eslint --fix --cache \"src/**/*.{js,jsx}\"",
-    "formatter": "prettier --write --cache \"src/**/*.{js,jsx}\""
+    "formatter": "prettier --write --cache \"src/**/*.{js,jsx}\"",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +65,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^5.0.0",
     "prettier": "^2.8.8",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"

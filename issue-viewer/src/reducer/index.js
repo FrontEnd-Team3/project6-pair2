@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import { todoSlice } from "./detail";
+import { apiSlice } from "./detail";
 
-export const rootReducer = combineReducers({ todo: todoSlice.reducer });
+export const rootReducer = combineReducers({ api: apiSlice.reducer });

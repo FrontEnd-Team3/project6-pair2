@@ -18,6 +18,9 @@ const Pagination = ({ numPages, page, setPage }) => {
               {i + 1}
             </Button>
           ))}
+        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+          &gt;
+        </Button>
       </Nav>
     </>
   );
@@ -28,6 +31,8 @@ const Nav = styled.div`
   align-items: center;
   gap: 4px;
   margin: 16px;
+  position: relative;
+  top: 50px;
 `;
 
 const Button = styled.button`

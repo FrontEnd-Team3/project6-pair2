@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-const Pagination = ({ numPages, page, setPage }) => {
+const Pagination = ({ numPages, page, setPage, redirect }) => {
   return (
     <>
       <Nav>
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
+        <Button
+          onClick={() => {
+            setPage(page - 1);
+            redirect({ page: page - 1 });
+          }}
+          disabled={page === 1}
+        >
           &lt;
         </Button>
         {Array(numPages)
@@ -12,13 +18,22 @@ const Pagination = ({ numPages, page, setPage }) => {
           .map((_, i) => (
             <Button
               key={i + 1}
-              onClick={() => setPage(i + 1)}
+              onClick={() => {
+                setPage(i + 1);
+                redirect({ page: i + 1 });
+              }}
               aria-current={page === i + 1 ? "page" : null}
             >
               {i + 1}
             </Button>
           ))}
-        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        <Button
+          onClick={() => {
+            setPage(page + 1);
+            redirect({ page: page + 1 });
+          }}
+          disabled={page === numPages}
+        >
           &gt;
         </Button>
       </Nav>

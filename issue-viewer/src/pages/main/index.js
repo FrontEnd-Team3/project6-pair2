@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/rest";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Pagination from "./componetns/pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { resetCurrPost, setApi } from "../../reducer/detail";
@@ -17,15 +17,25 @@ const MainPage = () => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("created");
   const pageCount = parseInt(200 / limit);
+  const [params, setParams] = useState({ page, sort, limit });
 
   const api = useSelector((state) => state.api.apis);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const redirect = (newParams) => {
+    setSearchParams({ limit, page, sort, ...newParams });
+  };
 
   const navigate = useNavigate();
   useEffect(() => {
+    setPage(parseInt(searchParams.get("page")) || 1);
+    setLimit(parseInt(searchParams.get("limit")) || 20);
+    setSort(searchParams.get("sort") || "created");
+    redirect();
     dispatch(setApi({ limit, sort }));
     dispatch(resetCurrPost());
-  }, [limit, sort]);
+  }, [limit, page, sort]);
 
   return (
     <High_Container>
@@ -35,7 +45,10 @@ const MainPage = () => {
           <select
             type="number"
             value={limit}
-            onChange={({ target: { value } }) => setLimit(Number(value))}
+            onChange={({ target: { value } }) => {
+              setLimit(Number(value));
+              redirect({ limit: Number(value) });
+            }}
           >
             <option value="20">20</option>
             <option value="50">50</option>
@@ -46,7 +59,10 @@ const MainPage = () => {
           Select a Page Filter
           <select
             value={sort}
-            onChange={({ target: { value } }) => setSort(value)}
+            onChange={({ target: { value } }) => {
+              setSort(value);
+              redirect({ sort: value });
+            }}
           >
             <option value="created">created</option>
             <option value="updated">updated</option>
@@ -72,7 +88,12 @@ const MainPage = () => {
           ))}
       </Container>
       {console.log(api.length)}
-      <Pagination numPages={pageCount} page={page} setPage={setPage} />
+      <Pagination
+        numPages={pageCount}
+        page={page}
+        setPage={setPage}
+        redirect={redirect}
+      />
     </High_Container>
   );
 };

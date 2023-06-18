@@ -13,7 +13,8 @@
 - 오현우 : 프로젝트 구성, rtk 활용 상태관리, 상세페이지 구현, 쿼리스트링 활용 뒤로가기 기능 구현
 
 ## :hammer: 기술 스택 
-React + octokit 
+![react](https://img.shields.io/badge/react-18.2.0-61DAFB?logo=react)
+
 
 <br>
 

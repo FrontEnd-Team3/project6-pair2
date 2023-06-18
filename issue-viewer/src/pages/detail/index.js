@@ -16,7 +16,7 @@ const DetailPage = () => {
   useEffect(() => {
     dispatch(setCurrPost(postId));
   }, [currPost]);
-
+  
   return (
     currPost && (
       <>
